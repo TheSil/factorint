@@ -1,2 +1,2 @@
-# pyfactorize
-integer factorization library
+# factorint
+Python integer factorization library
