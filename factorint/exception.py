@@ -1,0 +1,2 @@
+class FactorException(Exception):
+    pass
