@@ -1,4 +1,4 @@
-from .prime_list import PrimeList
+from factorint.prime_list import PrimeList
 
 
 def sieve_of_eratosthenes(to) -> PrimeList:

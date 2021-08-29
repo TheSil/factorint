@@ -1,12 +1,12 @@
 from enum import Enum
 from typing import List
 
-from .exception import FactorException
-from .pollard_rho import find_by_pollard_rho
-from .small_primes import find_small_prime_factor
-from .state import FactorComponent, FactorizationState
-from .utils import get_perfect_power
-from .wheel_factorization import find_by_wheel_division
+from factorint.exception import FactorException
+from factorint.pollard_rho import find_by_pollard_rho
+from factorint.small_primes import find_small_prime_factor
+from factorint.state import FactorComponent, FactorizationState
+from factorint.utils import get_perfect_power
+from factorint.wheel_factorization import find_by_wheel_division
 
 
 class NoFactorFound(FactorException):

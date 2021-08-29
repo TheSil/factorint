@@ -1,6 +1,6 @@
 import math
 
-from .state import FactorizationState
+from factorint.state import FactorizationState
 
 
 # wheel division - trial division while avoiding multiples of few smallest primes

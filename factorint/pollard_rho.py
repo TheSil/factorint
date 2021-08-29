@@ -1,6 +1,6 @@
 import math
 
-from .state import FactorizationState
+from factorint.state import FactorizationState
 
 
 def find_by_pollard_rho(state: FactorizationState) -> bool:

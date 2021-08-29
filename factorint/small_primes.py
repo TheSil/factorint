@@ -1,7 +1,7 @@
 import math
 
-from .eratosthenes import sieve_of_eratosthenes
-from .state import FactorizationState
+from factorint.eratosthenes import sieve_of_eratosthenes
+from factorint.state import FactorizationState
 
 small_primes = sieve_of_eratosthenes(10000)
 
