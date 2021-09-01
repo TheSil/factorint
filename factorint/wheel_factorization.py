@@ -41,7 +41,7 @@ def find_by_wheel_division(state: FactorizationState) -> bool:
     while kprod <= min(trial_division_limit, sqrt_n):
         for off in wheel.offsets:
             d = kprod + off
-            if n % d == 0:
+            if d != 1 and n % d == 0:
                 state.add_prime_factor(d)
                 return True
         kprod += wheel.prod

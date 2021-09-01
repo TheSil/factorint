@@ -16,12 +16,15 @@ def iroot(x, n):
             return mid
     return mid + 1
 
-def is_perfect_square(n):
+def isrt(n):
     y, x = n, n+1
     while y < x:
         x = y
         y = (x+n//x) >> 1
+    return x
 
+def is_perfect_square(n):
+    x = isrt(n)
     return x*x == n
 
 def jacobi(n, k):

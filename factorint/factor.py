@@ -37,29 +37,45 @@ class FactorizationMode(Enum):
 def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, verbose=False) -> List[FactorComponent]:
     state = FactorizationState(n)
     algs = [check_perfect_power,
-            find_small_prime_factor,
             check_prime_baillie_psw,
             find_by_wheel_division,
             find_by_pollard_rho]
 
+    # small primes are special, we need to check them only once
+    state.to_factor = state.to_factor_comps.get()
+    find_small_prime_factor(state)
+
+    if mode == FactorizationMode.FirstFactor and state.prime_comps:
+        return state.prime_comps
+
+    if state.to_factor.base != 1:
+        state.to_factor_comps.put(state.to_factor)
+        state.to_factor = None
+
     while not state.to_factor_comps.empty():
         state.to_factor = state.to_factor_comps.get()
+        prev = state.to_factor.base
+
         if verbose:
             print(f"factoring: {state.to_factor.base}")
         for alg in algs:
             if verbose:
                 print(f"running alg: {alg.__name__}")
             while alg(state):
-                if state.to_factor.base == 1 or \
-                        mode == FactorizationMode.FirstFactor:
+                if state.to_factor.base == 1:
+                    break
+                if state.to_factor.base != prev and mode == FactorizationMode.FirstFactor:
                     break
 
-            if state.to_factor.base == 1 or \
-                    mode == FactorizationMode.FirstFactor:
+            if state.to_factor.base != prev:
                 break
 
-        if state.to_factor.base != 1:
+        if state.to_factor.base == prev:
             state.unfactored.append(state.to_factor)
+            state.to_factor = state.to_factor_comps.get() if not state.to_factor_comps.empty() else None
+        elif state.to_factor.base != 1:
+            # something unfactored still remains, push to trough the pipeline
+            state.to_factor_comps.put(state.to_factor)
 
         if mode == FactorizationMode.FirstFactor and state.prime_comps:
             return state.prime_comps

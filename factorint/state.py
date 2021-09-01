@@ -53,6 +53,3 @@ class FactorizationState:
         self.to_factor.base //= comp.to_int()
         comp.exp *= to_factor.exp
         self.to_factor_comps.put(comp)
-        if self.to_factor.base != 1:
-            self.to_factor_comps.put(self.to_factor)
-        self.to_factor = FactorComponent(1, 1)
