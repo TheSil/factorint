@@ -30,7 +30,7 @@ def jacobi(n, k):
     t = 1
     while n != 0:
         while n % 2 == 0:
-            n = n / 2
+            n = n // 2
             r = k % 8
             if r == 3 or r == 5:
                 t = -t
