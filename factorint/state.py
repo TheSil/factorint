@@ -41,7 +41,7 @@ class FactorizationState:
         self.to_factor_comps.put(FactorComponent(n, 1))
         self.to_factor = None
         self.n = n
-        self.factored_to = 1
+        self.primes_checked_up_to = 1
 
     def add_prime_factor(self, p):
         to_factor = self.to_factor

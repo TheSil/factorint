@@ -30,7 +30,7 @@ wheel = WheelFactorization()
 
 
 def find_by_wheel_division(state: FactorizationState) -> bool:
-    start = state.factored_to + 1
+    start = state.primes_checked_up_to + 1
     trial_division_limit = 1000000
 
     #  k*prod  >= wheel_from => k >= wheel_from/prod

@@ -83,7 +83,7 @@ def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, ver
     if verbose:
         print(f"found prime factors: {state.prime_comps}")
         print(f"remaining factors: {state.unfactored}")
-        print(f"checked all primes up to: {state.factored_to}")
+        print(f"checked all primes up to: {state.primes_checked_up_to}")
 
     if not state.unfactored:
         return state.prime_comps

@@ -20,6 +20,6 @@ def find_small_prime_factor(state: FactorizationState) -> bool:
             state.add_prime_factor(n)
             return True
 
-        state.factored_to = p
+        state.primes_checked_up_to = p
 
     return start_n != n
