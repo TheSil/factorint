@@ -23,7 +23,6 @@ Output:
 TODO - Python:
 - update to structure to importable/installable package
 - argparse for factor cli
-- add tests
 - formalize configurable parameters for each algorithm
 
 TODO - algorithms:

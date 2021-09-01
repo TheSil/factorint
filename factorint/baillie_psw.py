@@ -11,6 +11,12 @@ def is_probable_prime_baillie_psw(n):
     if is_composite_miller_rabin(n, 2):
         return False
 
+    if n==1:
+        return False
+
+    if n==2:
+        return True
+
     D = 5
     sign = 1
     while jacobi(sign * D, n) != -1:

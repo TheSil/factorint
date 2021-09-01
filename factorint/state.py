@@ -12,8 +12,17 @@ class FactorComponent:
         self.exp = exp
         self.type = type
 
+    @classmethod
+    def prime_power(cls, p, e):
+        return cls(p, e, FactorType.Prime)
+
     def to_int(self):
         return self.base ** self.exp
+
+    def __eq__(self, other):
+        return self.base == other.base and \
+               self.exp == other.exp and \
+               self.type == other.type
 
     def __repr__(self):
         base = repr(self.base)

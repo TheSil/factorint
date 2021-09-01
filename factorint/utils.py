@@ -16,7 +16,7 @@ def iroot(x, n):
             return mid
     return mid + 1
 
-def isrt(n):
+def isqrt(n):
     y, x = n, n+1
     while y < x:
         x = y
@@ -24,7 +24,7 @@ def isrt(n):
     return x
 
 def is_perfect_square(n):
-    x = isrt(n)
+    x = isqrt(n)
     return x*x == n
 
 def jacobi(n, k):
