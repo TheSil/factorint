@@ -16,6 +16,8 @@ def find_small_prime_factor(state: FactorizationState) -> bool:
             state.add_prime_factor(p)
             n = state.to_factor.base
             sqrt_n = isrt(n)
+            if n == 1:
+                break
         if p > sqrt_n:
             state.add_prime_factor(n)
             return True
