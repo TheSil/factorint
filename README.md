@@ -5,6 +5,7 @@ Only simplest, naive algorithms implemented for now:
 - factoring by small primes
 - wheel factorization (modified trial division)
 - pollard rho factorization
+- Baillie–PSW primality test for probable prime testing (faster than trying to factor)
 
 Example:
 
@@ -26,7 +27,6 @@ TODO - Python:
 - formalize configurable parameters for each algorithm
 
 TODO - algorithms:
-- Baillie–PSW primality test for probable prime testing (faster than trying to factor)
 - Continued fraction factorization
 - Quadratic sieve factorization
 - Number Field sieve factorization

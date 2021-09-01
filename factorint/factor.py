@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import List
 
+from factorint.baillie_psw import check_prime_baillie_psw
 from factorint.exception import FactorException
 from factorint.pollard_rho import find_by_pollard_rho
 from factorint.small_primes import find_small_prime_factor
@@ -37,6 +38,7 @@ def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, ver
     state = FactorizationState(n)
     algs = [check_perfect_power,
             find_small_prime_factor,
+            check_prime_baillie_psw,
             find_by_wheel_division,
             find_by_pollard_rho]
 
@@ -79,4 +81,3 @@ def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, ver
         raise NoFactorFound()
 
     raise NoFullFactorizationFound()
-
