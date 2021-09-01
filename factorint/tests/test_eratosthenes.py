@@ -17,8 +17,8 @@ class TestEratosthenes(unittest.TestCase):
                      199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313,
                      317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439,
                      443, 449, 457, 461, 463, 467, 479, 487, 491, 499]
-        self.assertEqual({i+1: p for i, p in enumerate(up_to_500)},
-                      eratosthenes.sieve_of_eratosthenes(500).primes)
+        self.assertEqual({i + 1: p for i, p in enumerate(up_to_500)},
+                         eratosthenes.sieve_of_eratosthenes(500).primes)
 
 
 if __name__ == '__main__':

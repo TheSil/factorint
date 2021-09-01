@@ -11,9 +11,7 @@ class TestBailliePsw(unittest.TestCase):
                      317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439,
                      443, 449, 457, 461, 463, 467, 479, 487, 491, 499}
         for n in range(1, 500):
-            print(n)
             self.assertEqual(n in up_to_500, baillie_psw.is_probable_prime_baillie_psw(n))
-
 
 
 if __name__ == '__main__':

@@ -16,6 +16,5 @@ class TestMillerRabin(unittest.TestCase):
         self.assertEqual(True, miller_rabin.is_composite_miller_rabin(95721889, 21906436))
 
 
-
 if __name__ == '__main__':
     unittest.main()

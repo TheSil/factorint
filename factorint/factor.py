@@ -7,7 +7,7 @@ from factorint.pollard_rho import find_by_pollard_rho
 from factorint.small_primes import find_small_prime_factor
 from factorint.state import FactorComponent, FactorizationState
 from factorint.utils import get_perfect_power
-from factorint.wheel_factorization import find_by_wheel_division
+from factorint.wheel_division import find_by_wheel_division
 
 
 class NoFactorFound(FactorException):
