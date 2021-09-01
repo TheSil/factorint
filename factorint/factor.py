@@ -93,7 +93,7 @@ def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, ver
 
     if mode == FactorizationMode.PartialFactorization:
         if state.prime_comps:
-            return state.prime_comps
+            return state.prime_comps + state.unfactored
         raise NoFactorFound()
 
     raise NoFullFactorizationFound()

@@ -1,6 +1,6 @@
 from factorint.lucas_pseudoprime import is_lucas_pseudoprime
 from factorint.miller_rabin import is_composite_miller_rabin
-from factorint.state import FactorizationState
+from factorint.state import FactorizationState, FactorType
 from factorint.utils import is_perfect_square, jacobi
 
 
@@ -30,4 +30,5 @@ def check_prime_baillie_psw(state: FactorizationState) -> bool:
         state.add_prime_factor(n)
         return True
 
+    state.to_factor.type = FactorType.Composite
     return False
