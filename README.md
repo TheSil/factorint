@@ -3,8 +3,7 @@ Python integer factorization library. Intended mainly for my personal study of f
 
 Only simplest, naive algorithms implemented for now:
 - factoring by small primes
-- wheel factorization (modified trial division)
-- pollard rho factorization
+- Pollard Rho factorization
 - Baillie–PSW primality test for probable prime testing (faster than trying to factor)
 
 Example:

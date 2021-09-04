@@ -7,7 +7,6 @@ from factorint.pollard_rho import find_by_pollard_rho
 from factorint.small_primes import small_primes
 from factorint.state import FactorComponent, FactorizationState
 from factorint.utils import get_perfect_power, isqrt
-from factorint.wheel_division import find_by_wheel_division
 
 
 class NoFactorFound(FactorException):
@@ -59,7 +58,6 @@ def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, ver
     state = FactorizationState(n)
     algs = [check_perfect_power,
             check_prime_baillie_psw,
-            find_by_wheel_division,
             find_by_pollard_rho]
 
     # small primes are special, we need to check them only once
