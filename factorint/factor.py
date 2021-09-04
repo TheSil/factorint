@@ -1,3 +1,5 @@
+import logging
+import sys
 from enum import Enum
 from typing import List
 
@@ -7,6 +9,9 @@ from factorint.pollard_rho import find_by_pollard_rho
 from factorint.small_primes import small_primes
 from factorint.state import FactorComponent, FactorizationState
 from factorint.utils import get_perfect_power, isqrt
+
+logger = logging.getLogger("factorint")
+logging.basicConfig(stream=sys.stdout, level=logging.WARNING)
 
 
 class NoFactorFound(FactorException):
@@ -42,6 +47,7 @@ def find_small_prime_factor(state: FactorizationState) -> bool:
         state.primes_checked_up_to = p
 
         if p > sqrt_n:
+            state.primes_checked_up_to = n
             state.add_prime_factor(n)
             return True
 
@@ -60,6 +66,12 @@ def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, ver
             check_prime_baillie_psw,
             find_by_pollard_rho]
 
+    if verbose:
+        logger.setLevel(logging.INFO)
+
+    logger.log(logging.INFO, f"factoring: {n}")
+    logger.log(logging.INFO, f"checking for small prime factors")
+
     # small primes are special, we need to check them only once
     state.to_factor = state.to_factor_comps.get()
     find_small_prime_factor(state)
@@ -75,11 +87,11 @@ def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, ver
         state.to_factor = state.to_factor_comps.get()
         prev = state.to_factor.base
 
-        if verbose:
-            print(f"factoring: {state.to_factor.base}")
+        logger.log(logging.INFO, f"checking factor: {state.to_factor.base}")
+
         for alg in algs:
-            if verbose:
-                print(f"running alg: {alg.__name__}")
+            logger.log(logging.INFO, f"running alg: {alg.__name__}")
+
             while alg(state):
                 if state.to_factor.base == 1:
                     break
@@ -99,10 +111,9 @@ def factor(n, mode: FactorizationMode = FactorizationMode.FullFactorization, ver
         if mode == FactorizationMode.FirstFactor and state.prime_comps:
             return state.prime_comps
 
-    if verbose:
-        print(f"found prime factors: {state.prime_comps}")
-        print(f"remaining factors: {state.unfactored}")
-        print(f"checked all primes up to: {state.primes_checked_up_to}")
+    logger.log(logging.INFO, f"found prime factors: {state.prime_comps}")
+    logger.log(logging.INFO, f"remaining factors: {state.unfactored}")
+    logger.log(logging.INFO, f"checked all primes up to: {state.primes_checked_up_to}")
 
     if not state.unfactored:
         return state.prime_comps

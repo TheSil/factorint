@@ -1,5 +1,8 @@
+import logging
 import queue
 from enum import Enum
+
+logger = logging.getLogger("factorint")
 
 class FactorType(Enum):
     Unknown = 1
@@ -54,13 +57,16 @@ class FactorizationState:
 
     def add_prime_factor(self, p):
         to_factor = self.to_factor
+        logger.log(logging.INFO, f"found prime factor: {p}")
 
         if to_factor.base == p:
             # original component was prime in fact
+
             self.prime_comps.append(to_factor)
             to_factor.type = FactorType.Prime
             self.to_factor = FactorComponent(1, 1)
             return
+
 
         comp = max_factor_component(p, to_factor.base)
         self.to_factor.base //= comp.to_int()
@@ -71,7 +77,9 @@ class FactorizationState:
     def add_divisor(self, d):
         to_factor = self.to_factor
 
+        logger.log(logging.INFO, f"found factor: {d}")
         comp = max_factor_component(d, to_factor.base)
         self.to_factor.base //= comp.to_int()
+        logger.log(logging.INFO, f"found factor: {self.to_factor.base}")
         comp.exp *= to_factor.exp
         self.to_factor_comps.put(comp)
