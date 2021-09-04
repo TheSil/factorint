@@ -4,9 +4,9 @@ from typing import List
 from factorint.baillie_psw import check_prime_baillie_psw
 from factorint.exception import FactorException
 from factorint.pollard_rho import find_by_pollard_rho
-from factorint.small_primes import find_small_prime_factor
+from factorint.small_primes import small_primes
 from factorint.state import FactorComponent, FactorizationState
-from factorint.utils import get_perfect_power
+from factorint.utils import get_perfect_power, isqrt
 from factorint.wheel_division import find_by_wheel_division
 
 
@@ -26,6 +26,27 @@ def check_perfect_power(state: FactorizationState) -> bool:
         return True
 
     return False
+
+
+def find_small_prime_factor(state: FactorizationState) -> bool:
+    n = state.to_factor.base
+    start_n = n
+    sqrt_n = isqrt(n)
+    for p in small_primes:
+        if n % p == 0:
+            state.add_prime_factor(p)
+            n = state.to_factor.base
+            sqrt_n = isqrt(n)
+            if n == 1:
+                break
+
+        state.primes_checked_up_to = p
+
+        if p > sqrt_n:
+            state.add_prime_factor(n)
+            return True
+
+    return start_n != n
 
 
 class FactorizationMode(Enum):
