@@ -55,7 +55,7 @@ def jacobi(n, k):
 
 
 def get_perfect_power(n):
-    for b in reversed(range(2, n.bit_length() - 1)):
+    for b in range(2, ilog2(n)):
         root = iroot(n, b)
         if root ** b == n:
             return root, b

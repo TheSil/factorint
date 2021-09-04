@@ -1,30 +1,24 @@
 from factorint.lucas_pseudoprime import is_lucas_pseudoprime
-from factorint.miller_rabin import is_composite_miller_rabin
+from factorint.miller_rabin import is_provable_composite_miller_rabin
 from factorint.state import FactorizationState, FactorType
 from factorint.utils import is_perfect_square, jacobi
 
 
 def is_probable_prime_baillie_psw(n):
+    if n <= 2:
+        return n == 2
+
     if is_perfect_square(n):
         return False
 
-    if is_composite_miller_rabin(n, 2):
+    if is_provable_composite_miller_rabin(n, 2):
         return False
 
-    if n==1:
-        return False
-
-    if n==2:
-        return True
-
-    D = 5
-    sign = 1
+    D, sign = 5, 1
     while jacobi(sign * D, n) != -1:
-        D += 2
-        sign = -sign
-    D = sign * D
+        D, sign = D + 2, -sign
 
-    if is_lucas_pseudoprime(n, D):
+    if is_lucas_pseudoprime(n, sign * D):
         return True
 
     return False

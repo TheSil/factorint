@@ -4,7 +4,7 @@ from factorint.state import FactorizationState
 
 
 # wheel division - trial division while avoiding multiples of few smallest primes
-class WheelFactorization:
+class WheelDivision:
 
     def __init__(self, base=(2, 3, 5)):
         self.base = base
@@ -26,7 +26,7 @@ class WheelFactorization:
                 self.offsets.append(d)
 
 
-wheel = WheelFactorization()
+wheel = WheelDivision()
 
 
 def find_by_wheel_division(state: FactorizationState) -> bool:
