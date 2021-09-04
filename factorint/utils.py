@@ -16,16 +16,23 @@ def iroot(x, n):
             return mid
     return mid + 1
 
+
 def isqrt(n):
-    y, x = n, n+1
+    y, x = n, n + 1
     while y < x:
         x = y
-        y = (x+n//x) >> 1
+        y = (x + n // x) >> 1
     return x
+
+
+def ilog2(n):
+    return n.bit_length() - 1
+
 
 def is_perfect_square(n):
     x = isqrt(n)
-    return x*x == n
+    return x * x == n
+
 
 def jacobi(n, k):
     assert (k > 0 and k % 2 == 1)
@@ -45,6 +52,7 @@ def jacobi(n, k):
         return t
     else:
         return 0
+
 
 def get_perfect_power(n):
     for b in reversed(range(2, n.bit_length() - 1)):

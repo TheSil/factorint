@@ -15,6 +15,11 @@ class TestUtils(unittest.TestCase):
                 for k in range(b ** e, (b + 1) ** e):
                     self.assertEqual(b, utils.iroot(k, e))
 
+    def test_ilog2(self):
+        for b in range(1, 15):
+            for k in range(2 ** b, 2 ** (b + 1)):
+                self.assertEqual(b, utils.ilog2(k))
+
     def test_jacobi(self):
         self.assertEqual(-1, utils.jacobi(1001, 9907))
         self.assertEqual(1, utils.jacobi(19, 45))
